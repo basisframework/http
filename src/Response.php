@@ -3,11 +3,16 @@ namespace Basis\Http;
 use Basis\Http\Message;
 
 class Response extends Message {
+	private $string;
 	private $code = 200;
 	private $message = NULL;
+
+	public function __construct(StringService $string) {
+		$this->string = $string;
+	}
 	
-	public function __construct($request, $code, $message = NULL) {
-		parent::__construct($request->getHttpVersion());
+	public function init($request, $code, $message = NULL) {
+		$this->setHttpVersion($request->getHttpVersion());
 		$this->setCode($code);
 		$this->setMessage($message);
 	}
@@ -17,7 +22,15 @@ class Response extends Message {
 	}
 
 	public function getMessage() {
-		return 
+		return $this->message;
+	}
+
+	public function setCode($code) {
+		$this->code = $code;
+	}
+
+	public function setMessage($message) {
+		$this->message = $message;
 	}
 
 };

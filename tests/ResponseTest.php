@@ -18,12 +18,6 @@ class RequestTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('GET', $request->getMethod());
 	}
 
-	public function testSetMethod() {
-		$request = new Basis\Http\Request(new Basis\Objects\StringService);
-		$request->init('GET', '/');
-		$this->assertEquals('GET', $request->getMethod());
-	}
-
 	public function testMethodCaseInsensitive() {
 		$request = new Basis\Http\Request(new Basis\Objects\StringService);
 		$request->init('get', '/');

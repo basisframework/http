@@ -1,19 +1,18 @@
 <?php
 namespace Basis\Http;
 use Basis\Http\Message;
-use Basis\Interfaces\Objects\StringService;
+use Basis\Objects\StringService;
 
 class Request extends Message {
-	private $string;
+	static $ALLOWED_METHODS = array('GET', 'POST', 'PUT', 'DELETE');
 
+	private $string;
 	private $method;
 	private $url;
 
-	public function __construct(StringService $string) {
+	public function __construct(StringService $string, $method, $url, $version = '1.1') {
 		$this->string = $string;
-	}
-
-	public function init($method, $url, $version = '1.1') {
+		
 		$this->setMethod($method);
 		$this->setUrl($url);
 		$this->setHttpVersion($version);
@@ -35,6 +34,10 @@ class Request extends Message {
 		}
 
 		$this->method = $method;
+	}
+
+	public function setUrl($url) {
+		$this->url = $url;
 	}
 
 };

@@ -18,8 +18,16 @@ class Message {
 		return $this->body;
 	}
 
+	public function setHttpVersion($version) {
+		$this->http_version = $version;
+	}
+
 	public function setHeaders($headers) {
 		$this->headers = $headers;
+	}
+
+	public function setHeader($name, $val) {
+		$this->headers[$name] = $val;
 	}
 
 	public function setBody($body) {
